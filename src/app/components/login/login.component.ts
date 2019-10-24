@@ -11,12 +11,12 @@ import {Router, Routes, RouterModule} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginError: boolean = false;
-  patientLoginStub: PatientStub;
+  // Step 1: Pull values from login fields and setup in patientLoginStub object.
+  patientLoginStub: PatientStub = {id: "", lastName: "", birthDate: ""};
   patientFromServer: PatientStub; // Store as a complete patient object? How easy to manipulate? Just add fullName field to stub? Need any other data?
 
   onClickLogin() {
-    // Step 1: Pull values from login fields and setup in patientLoginStub object.
-    this.patientLoginStub = {id:'', lastName: '', birthDate: ''};
+
     // Step 2: Use ID to get patient details from server.
     // FHIR CODE HERE
     // this.patientFromServer

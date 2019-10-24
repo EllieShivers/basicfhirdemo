@@ -5,9 +5,11 @@
 </div>
 <div class="column logincolumn">
   <p>Login stuff here</p>
-  <p>Patient ID: <input autocomplete="off" type="text" name="id" [(ngModel)]="patientLoginStub.id"></p>
+  <p>Patient ID: <input autocomplete="off" type="text" name="id" [(ngModel)]="patientLoginStub.id" value="2607775"></p>
   <p>Last Name: <input autocomplete="off" type="text" name="lastname" [(ngModel)]="patientLoginStub.lastName"></p>
+  <p>Birth Date: <input autocomplete="off" type="text" name="birthdate" [(ngModel)]="patientLoginStub.birthDate" placeholder="yyyy-mm-dd"></p>
   <button (click)="onClickLogin()">Login</button>
-  <p>Your last name is {{patientLoginStub.lastName}}</p>
+  <p>(TEST) Your last name is {{patientLoginStub.lastName}}</p>
+  <p>(TEST) Your bday is {{patientLoginStub.birthDate}}</p>
   <p *ngIf="loginError">Login information incorrect. Last Name or Birthday does not match Patient ID.</p>
 </div>
