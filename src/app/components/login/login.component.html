@@ -102,17 +102,30 @@
 </div>
 <div class="column logincolumn">
   <p>Login stuff here</p>
-  <p>Patient ID: <input autocomplete="off" type="text" name="id" [(ngModel)]="patientLoginStub.id" value="2607775"></p>
-  <p>Last Name: <input autocomplete="off" type="text" name="lastname" [(ngModel)]="patientLoginStub.lastName"></p>
-  <p>Birth Date: <input autocomplete="off" type="text" name="birthdate" [(ngModel)]="patientLoginStub.birthDate"
-                        placeholder="yyyy-mm-dd"></p>
+  <p>
+    <label for="id">Patient ID:</label>
+    <input autocomplete="off" type="text" id="id" [(ngModel)]="patientLoginStub.id" value="2607775">
+  </p>
+  <p>
+    <label for="lastname">Last Name:</label>
+    <input autocomplete="off" type="text" id="lastname" [(ngModel)]="patientLoginStub.lastName">
+  </p>
+  <p>
+    <label for="birthdate">Birth Date:</label>
+    <input autocomplete="off" type="text" id="birthdate" [(ngModel)]="patientLoginStub.birthDate"
+                        placeholder="yyyy-mm-dd">
+  </p>
+
   <button (click)="onClickLogin()">Login</button>
-  <p>(TEST) Your last name is {{patientLoginStub.lastName}}</p>
-  <p>(TEST) Your bday is {{patientLoginStub.birthDate}}</p>
+
+  <! For testing>
+  <p>Your last name is {{patientLoginStub.lastName}}</p>
+  <p> Your bday is {{patientLoginStub.birthDate}}</p>
+
   <p *ngIf="loginError">Login information incorrect. Last Name or Birthday does not match Patient ID.</p>
-  <input type="text" name="testMessage" [(ngModel)]="testMessages">
+  <p *ngIf="loginSuccess">Login Successful!</p>
 
-
-  <button [routerLink]="['../procedures']">Procedures Component</button>
-  <button [routerLink]="['../articles']">Articles Component</button>
+  <! Navigation Testing>
+  <p><button [routerLink]="['../procedures']">Procedures Component</button></p>
+  <p><button [routerLink]="['../articles']">Articles Component</button></p>
 </div>

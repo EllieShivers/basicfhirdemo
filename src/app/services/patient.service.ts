@@ -1,25 +1,21 @@
 import {Injectable} from '@angular/core';
 import { PatientStub } from '../models/patientStub';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { PATIENT } from '../mock-patient';
+//import { catchError, map, tap } from 'rxjs/operators';
+
 
 @Injectable()
 export class PatientService {
-  constructor(
-    private http: HttpClient
-  ) { }
-}
 
-@Injectable({
-  providedIn: 'root',
-})
-export class HeroService {
+  private serverUrl = 'http://hapi.fhir.org/baseDstu3';
 
-  getPatient(): Observable<PatientStub> {
+  getPatientById(patientId: string): Observable<PatientStub> {
+    // change this to get patient id from server
     return of(PATIENT);
   }
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
 }
