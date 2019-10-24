@@ -111,4 +111,8 @@
   <p>(TEST) Your bday is {{patientLoginStub.birthDate}}</p>
   <p *ngIf="loginError">Login information incorrect. Last Name or Birthday does not match Patient ID.</p>
   <input type="text" name="testMessage" [(ngModel)]="testMessages">
+
+
+  <button [routerLink]="['../procedures']">Procedures Component</button>
+  <button [routerLink]="['../articles']">Articles Component</button>
 </div>

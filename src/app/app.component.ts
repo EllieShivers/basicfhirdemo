@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'Basic FHIR Demo';
+  router: Router;
 
   // 1. Get ID, lastname, bday from input fields
   // 2. Get patient from fhir server based on id

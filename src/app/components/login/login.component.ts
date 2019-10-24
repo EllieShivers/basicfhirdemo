@@ -3,6 +3,7 @@ import {Patient} from '../../models/patient';
 import {PatientStub} from '../../models/patientStub';
 import {PatientService} from '../../services/patient.service';
 import { FhirClient} from 'ng-fhir/FhirClient';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
