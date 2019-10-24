@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginError: boolean = false;
   // Step 1: Pull values from login fields and setup in patientLoginStub object.
   patientLoginStub: PatientStub = {id: "", lastName: "", birthDate: ""};
-  patientFromServer: PatientStub; // Store as a complete patient object? How easy to manipulate? Just add fullName field to stub? Need any other data?
+  patientFromServer: PatientStub = {id: "", lastName: "pop", birthDate: ""}; // Store as a complete patient object? How easy to manipulate? Just add fullName field to stub? Need any other data?
 
   onClickLogin() {
 
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     if (this.patientLoginStub.lastName === this.patientFromServer.lastName) {
       // Need to add AND conditional for birthDate string
       // Step4: Direct patient to patient portal and pass the patient ID.
+      this.loginError = false;
     }
     else this.loginError = true; // Show Login Error
 
