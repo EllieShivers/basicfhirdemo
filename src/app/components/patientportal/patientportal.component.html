@@ -1,0 +1,29 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id="portalheader"> Portal Header</div>
+<div class="content">
+  <app-login class="currentcomponentview"></app-login>
+</div>
+
+
+<script>
+    window.onscroll = function () {
+        myFunction()
+    };
+
+    var portalHeader = document.getElementById("portalheader");
+    var sticky = portalHeader.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            portalHeader.classList.add("sticky")
+        } else {
+            portalHeader.classList.remove("sticky");
+        }
+    }
+</script>
+</body>
+</html>
