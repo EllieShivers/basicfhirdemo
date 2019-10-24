@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+  overflow: auto;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+:host {
+  height: 100%
+}
