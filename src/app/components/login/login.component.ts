@@ -10,7 +10,7 @@ import {PatientService} from '../../services/patient.service';
 export class LoginComponent implements OnInit {
 
   // This code breaks the login component :(
-  //constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService) { }
 
   loginError: boolean = false;
   loginSuccess: boolean = false;
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   // Step 1: Pull values from login fields and setup in patientLoginStub object.
   patientID: string = "2607775"; // testing ID
   patientLoginStub: PatientStub = {id: this.patientID, lastName: "", birthDate: ""};
-  patientFromServer: PatientStub = {id: '', lastName: '', birthDate: ""};
+  //patientFromServer: PatientStub = {id: '', lastName: '', birthDate: ""};
+  patientFromServer: PatientStub; // Declaration only.
   // Store as a complete patient object? How easy to manipulate? Just add fullName field to stub? Need any other data?
 
   onClickLogin() {
@@ -43,7 +44,7 @@ export class LoginComponent implements OnInit {
 
   getPatientById(): void {
     // Setup code to Validate ID
-   // this.patientService.getPatientById(this.patientLoginStub.id).subscribe(patient => this.patientFromServer = patient);
+    this.patientService.getPatientById(this.patientLoginStub.id).subscribe(patient => this.patientFromServer = patient);
   }
 
 }

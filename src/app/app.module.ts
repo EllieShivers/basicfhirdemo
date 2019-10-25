@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {Router, RouterModule} from '@angular/router';
+import { RouterModule} from '@angular/router';
 import { HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -12,6 +12,7 @@ import { FileNotFoundComponent } from './components/file-not-found/file-not-foun
 import { ProceduresComponent } from './components/procedures/procedures.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PatientService } from './services/patient.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    PatientService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
