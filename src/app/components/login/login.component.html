@@ -113,7 +113,7 @@
   <p>
     <label for="birthdate">Birth Date:</label>
     <input autocomplete="off" type="text" id="birthdate" [(ngModel)]="patientLoginStub.birthDate"
-                        placeholder="yyyy-mm-dd">
+                        placeholder="yyyy-mm-dd" value="2001-01-01">
   </p>
 
   <button (click)="onClickLogin()">Login</button>
@@ -124,8 +124,4 @@
 
   <p *ngIf="loginError">Login information incorrect. Last Name or Birthday does not match Patient ID.</p>
   <p *ngIf="loginSuccess">Login Successful!</p>
-
-  <! Navigation Testing>
-  <p><button [routerLink]="['../procedures']">Procedures Component</button></p>
-  <p><button [routerLink]="['../articles']">Articles Component</button></p>
 </div>

@@ -9,42 +9,54 @@ import {PatientService} from '../../services/patient.service';
 })
 export class LoginComponent implements OnInit {
 
-  // This code breaks the login component :(
   constructor(private patientService: PatientService) { }
 
   loginError: boolean = false;
   loginSuccess: boolean = false;
 
-  // Step 1: Pull values from login fields and setup in patientLoginStub object.
-  patientID: string = "2607775"; // testing ID
-  patientLoginStub: PatientStub = {id: this.patientID, lastName: "", birthDate: ""};
-  //patientFromServer: PatientStub = {id: '', lastName: '', birthDate: ""};
-  patientFromServer: PatientStub; // Declaration only.
-  // Store as a complete patient object? How easy to manipulate? Just add fullName field to stub? Need any other data?
+  //  Step 1: Pull values from login fields and setup in patientLoginStub object.
+
+  // Quick login Testing Variables
+  //testPatientID: string = "2607775"; // testing patientID
+  //testPatientLastName: string = "pop"; // testing lastName
+  //testPatientBirthDate: string = "2001-01-01"; // testing birthDate
+  //patientLoginStub: PatientStub = {id: this.testPatientID, lastName: this.testPatientLastName, birthDate: this.testPatientBirthDate}
+
+  patientLoginStub: PatientStub = {id: "", lastName: "", birthDate: ""}; // To use quick login values uncomment above code and comment this
 
   onClickLogin() {
+    // TODO: Intercept undefined fields, malformed IDs, improperly structured date, etc.
+    // TODO: Add in full name and other needed fields to PatientStub
+
     // Step 2: Use patientLoginStub.id to get patient details from server.
-    this.getPatientById();
+    let patientFromServer: PatientStub; // Temp object to compare
 
-    // Step 3: Verify information from patientLoginStub against patientFromServer
-    if (this.patientLoginStub.lastName === this.patientFromServer.lastName) { // Need to add AND conditional for birthDate string
-      // Step4: Direct patient to patient portal and pass the patient ID.
-      this.loginError = false;
-      this.loginSuccess = true;
-    }
-    else {
-      this.loginSuccess = false;
-      this.loginError = true; // Show Login Error
-    }
+    this.patientService.getPatientById(this.patientLoginStub.id).then((data) => {
+      patientFromServer = data;
+      console.log(patientFromServer);
+      console.log(this.patientLoginStub);
+      console.log('Server Data Last Name:' + patientFromServer.lastName);
+      console.log('Login Data Last Name:' + this.patientLoginStub.lastName);
+
+      // Step 3: Verify information from patientLoginStub against patientFromServer
+      if (this.patientLoginStub.lastName === patientFromServer.lastName
+        && this.patientLoginStub.birthDate === patientFromServer.birthDate) {
+        // TODO: Step4: Direct patient to patient portal and pass the patient Stub.
+        this.loginError = false;
+        this.loginSuccess = true;
+      }
+      else {
+        this.loginSuccess = false;
+        this.loginError = true;
+      }
+    }).catch((error) => {
+      //TODO: Network call error handling
+      console.log(error);
+    }).finally(() => {
+      //TODO: Setup a contacting server/loading indicator (remove it here)
+    });
   }
-
-
 
   ngOnInit() {}
-
-  getPatientById(): void {
-    // Setup code to Validate ID
-    this.patientService.getPatientById(this.patientLoginStub.id).subscribe(patient => this.patientFromServer = patient);
-  }
 
 }

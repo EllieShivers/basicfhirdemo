@@ -1,5 +1,5 @@
 // Stub for holding login information
-export class PatientStub {
+export interface PatientStub {
   id: string;
   birthDate: string;
   lastName: string;
