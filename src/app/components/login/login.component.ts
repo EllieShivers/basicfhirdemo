@@ -10,7 +10,8 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private patientService: PatientService, private router: Router) { }
+  constructor(private patientService: PatientService, private router: Router) {
+  }
 
   loginError: boolean = false;
 
@@ -20,41 +21,49 @@ export class LoginComponent implements OnInit {
   // Step 1: Pull values from login fields and setup in patientLoginStub object.
 
   // Quick login Testing Variables TODO: Move this sort of stuff to unit tests?
-  //testPatientID: string = "2607775"; // testing patientID
-  //testPatientLastName: string = "pop"; // testing lastName
-  //testPatientBirthDate: string = "2001-01-01"; // testing birthDate
-  //patientLoginStub: PatientStub = {id: this.testPatientID, lastName: this.testPatientLastName, birthDate: this.testPatientBirthDate}
+  //testPatientID: string = '2607775'; // testing patientID
+  //testPatientLastName: string = 'pop'; // testing lastName
+  //testPatientBirthDate: string = '2001-01-01'; // testing birthDate
+  //patientLoginStub: PatientStub = {id: this.testPatientID, lastName: this.testPatientLastName, birthDate: this.testPatientBirthDate};
   patientLoginStub: PatientStub = {id: "", lastName: "", birthDate: ""}; // To use quick login values uncomment above code and comment this
+  patientFromServer: PatientStub = {id: '', lastName: '', birthDate: ''}; // Temp object to compare
 
   onClickLogin() {
+    this.loginSuccess = false;
+    this.loginError = false;
+    if (!this.patientLoginStub.id || !this.patientLoginStub.lastName || !this.patientLoginStub.birthDate) {
+      console.log('One or More Fields Empty');
+      return;
+    }
     // TODO: Intercept undefined fields, malformed IDs, improperly structured date, etc.
     // TODO: Add in full name and other needed fields to PatientStub
 
     // Step 2: Use patientLoginStub.id to get patient details from server.
-    let patientFromServer: PatientStub; // Temp object to compare
-
-    // TODO: Figure out why Promise is not waiting until after network call to run rest of code.
     this.patientService.getPatientById(this.patientLoginStub.id).then((data) => {
-      patientFromServer = data;
+      console.log(data);
+      let tempData: any = data as any;
+      this.patientFromServer.lastName = tempData.entry[0].resource.name[0].family;
+      this.patientFromServer.birthDate = tempData.entry[0].resource.birthDate;
+      this.patientFromServer.id = tempData.entry[0].resource.id;
     }).catch((error) => {
       //TODO: Network call error handling
       console.log(error);
+      return;
     }).finally(() => {
 
       // Logging to check what the patient objects look like, notice on first click the patientFromServer is usually empty since not coming
-      // back on time.
-      console.log(patientFromServer);
+      // back on time. TODO: Remove this
+      console.log(this.patientFromServer);
       console.log(this.patientLoginStub);
 
       // Step 3: Verify information from patientLoginStub against patientFromServer
-      if (this.patientLoginStub.lastName === patientFromServer.lastName
-        && this.patientLoginStub.birthDate === patientFromServer.birthDate) {
+      if (this.patientLoginStub.lastName === this.patientFromServer.lastName
+        && this.patientLoginStub.birthDate === this.patientFromServer.birthDate) {
 
         this.loginError = false;
         this.loginSuccess = true;
-
+        /* TODO: Reenable Navigation
         // Step4: Direct patient to patient portal and pass the patient Stub.
-        // TODO: This should not be routing until network call complete
         this.router.navigate(["procedures"]).then( (e) => {
           if (e) {
             //TODO: Setup different output for this stuff
@@ -62,15 +71,15 @@ export class LoginComponent implements OnInit {
           } else {
             console.log("Navigation has failed!");
           }
-        });
-      }
-      else {
+        });*/
+      } else {
         this.loginSuccess = false;
         this.loginError = true;
       }
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }

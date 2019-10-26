@@ -21,10 +21,6 @@
 
     <button (click)="onClickLogin()">Login</button>
 
-    <! For testing>
-    <p>Your last name is {{patientLoginStub.lastName}}</p>
-    <p> Your bday is {{patientLoginStub.birthDate}}</p>
-
     <p *ngIf="loginError">Login information incorrect. Last Name or Birthday does not match Patient ID.</p>
     <p *ngIf="loginSuccess">Login Successful!</p>
   </div>
