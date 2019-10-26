@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patientportal.component.css']
 })
 export class PatientportalComponent implements OnInit {
+  loggedin: boolean = true;
+  patientNameDisplayString = "First Last";
+  patientIdDisplayString = "12345678";
 
   constructor() { }
 

@@ -6,22 +6,33 @@
   float: left;
 }
 
-div.splashcolumn{
-  text-align: center;
-  width: 70%;
+div.container{
+  width: 100%;
   height: 100%;
+  text-align: center;
   padding: 0;
   margin: 0;
-  background-color: lightblue;
+  background-image: url("../../images/splash.jpg");
+  display: flex;
+}
+div.splashcolumn{
+  flex: 65%;
+  height: 100%;
+
+  text-align: center;
+  padding: 0;
+  margin: 0;
 }
 
 div.logincolumn{
-  width: 30%;
+  flex: 25%;
+  padding: 30px 15px 15px;
+  margin: 25px;
   text-align: center;
-  height: 100%;
-  padding: 0;
-  margin: 0;
   background-color: lightskyblue;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
 }
 
 div.errormessage{
