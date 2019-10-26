@@ -1,0 +1,10 @@
+div.articlesDescriptions{
+  flex: 25%;
+  padding: 30px 15px 15px;
+  margin: 5px;
+  text-align: left;
+  background-color: lightskyblue;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
+}
